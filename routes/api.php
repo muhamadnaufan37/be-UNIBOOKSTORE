@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\API\BukuController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +47,9 @@ Route::prefix('v1/unibookstore')->group(function () {
         Route::get('list', [BukuController::class, 'list_pengadaan']);
         Route::get('report_pengadaan', [BukuController::class, 'report_pengadaan']);
     });
+
+    Route::apiResource('products', ProductController::class);
+    Route::get('dashboard/statistics', [DashboardController::class, 'statistics']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
